@@ -16,7 +16,7 @@
 
   <div>
     <h2 class="text-xl font-semibold mb-4 text-brand-text-secondary">Categorías</h2>
-    <div class="flex space-x-3 overflow-x-auto pb-3">
+    <div class="flex gap-3 overflow-x-auto pb-3">
       @for(category of categories; track category) {
       <button (click)="selectCategory(category)"
         class="flex-shrink-0 px-4 py-2 rounded-full text-sm transition-colors duration-200 border-2" [ngClass]="selectedCategory() === category
