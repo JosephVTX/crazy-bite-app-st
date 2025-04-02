@@ -1,0 +1,110 @@
+<div class="space-y-6 px-4 py-8 md:p-0"> <h1 class="text-2xl md:text-3xl font-bold mb-6 text-brand-text-secondary">Estado de los Pedidos</h1>
+
+    @for(order of activeOrders(); track order.id) {
+      <div class="bg-brand-card rounded-lg p-4 md:p-6 shadow-md flex flex-col md:flex-row items-center gap-4 md:gap-6 relative">
+         @if (order.status === 'listo') {
+            <!-- <button
+              (click)="removeThisOrder(order.id)"
+              title="Eliminar pedido completado"
+              class="absolute top-2 left-2 bg-red-500 hover:bg-red-400 text-white text-sm font-bold px-2 py-1 rounded-md transition-colors flex items-center">
+                <fa-icon [icon]="faTrashAlt" class="mr-1"></fa-icon> Eliminar
+            </button> -->
+        }
+  
+        <div class="bg-brand-accent text-brand-dark font-bold rounded-md p-4 w-full md:w-24 h-16 md:h-auto flex items-center justify-center text-center flex-shrink-0">
+          <span class="text-lg">MESA</span>&nbsp;
+          <span class="text-lg">{{ order.tableNumber }}</span>
+        </div>
+  
+        <!-- Línea de progreso animada -->
+        <div class="w-full flex flex-col">
+          <div class="flex items-center justify-between mb-2 pt-4 md:pt-0">
+            <span class="text-xs text-brand-text-secondary">Recibido {{ formatTime(order.createdAt) }}</span>
+            <span class="text-xs text-brand-text-secondary">
+              <fa-icon [icon]="faClock" class="mr-1"></fa-icon> 
+              Tiempo restante: {{ getEstimatedTime(order) }} seg ({{ getProgressPercentage(order) | number:'1.0-0' }}%)
+            </span>
+          </div>
+
+          <div class="w-full bg-brand-sidebar rounded-full h-3 mb-4 relative overflow-hidden">
+            <!-- Barra de progreso -->
+            <div class="absolute top-0 left-0 h-full rounded-full transition-all duration-300 ease-in-out"
+                [style.width]="getProgressPercentage(order) + '%'"
+                [ngClass]="{
+                  'bg-green-500': order.status === 'listo',
+                  'bg-yellow-500 progress-animate': order.status === 'preparacion',
+                  'bg-blue-500': order.status === 'recibido'
+                }">
+            </div>
+          </div>
+
+          <div class="w-full flex items-center justify-around md:justify-between space-x-2 md:space-x-4 py-4">
+            <div class="flex flex-col items-center text-center">
+              <div
+                class="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 flex items-center justify-center mb-1"
+                [ngClass]="{
+                  'bg-green-500 border-green-500': getStatusClass(order.status, 'recibido') === 'completed',
+                  'border-gray-500': getStatusClass(order.status, 'recibido') !== 'completed'
+                }">
+                <fa-icon
+                  [icon]="getStatusClass(order.status, 'recibido') === 'completed' ? faCheck : faReceipt"
+                  [class.text-white]="getStatusClass(order.status, 'recibido') === 'completed'">
+                </fa-icon>
+              </div>
+              <span class="text-xs md:text-sm text-brand-text-secondary"
+                    [class.text-green-400]="getStatusClass(order.status, 'recibido') === 'completed'">
+                Pedido recibido
+              </span>
+            </div>
+    
+            <div class="flex flex-col items-center text-center">
+              <div
+                class="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 flex items-center justify-center mb-1"
+                [ngClass]="{
+                  'bg-green-500 border-green-500': getStatusClass(order.status, 'preparacion') === 'completed',
+                  'border-gray-500': getStatusClass(order.status, 'preparacion') !== 'completed',
+                  'bg-yellow-500 border-yellow-500 pulse-animation': getStatusClass(order.status, 'preparacion') === 'current'
+                }">
+                <fa-icon
+                  [icon]="getStatusClass(order.status, 'preparacion') === 'completed' ? faCheck : faUtensils"
+                  [class.text-white]="getStatusClass(order.status, 'preparacion') === 'completed' || getStatusClass(order.status, 'preparacion') === 'current'">
+                </fa-icon>
+              </div>
+              <span class="text-xs md:text-sm text-brand-text-secondary"
+                    [class.text-green-400]="getStatusClass(order.status, 'preparacion') === 'completed'"
+                    [class.text-yellow-400]="getStatusClass(order.status, 'preparacion') === 'current'">
+                En preparación
+              </span>
+            </div>
+    
+            <div class="flex flex-col items-center text-center">
+              <div
+                class="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 flex items-center justify-center mb-1"
+                [ngClass]="{
+                  'bg-green-500 border-green-500': getStatusClass(order.status, 'listo') === 'completed',
+                  'border-gray-500': getStatusClass(order.status, 'listo') !== 'completed',
+                  'bg-yellow-500 border-yellow-500 pulse-animation': getStatusClass(order.status, 'listo') === 'current'
+                }">
+                <fa-icon
+                  [icon]="getStatusClass(order.status, 'listo') === 'completed' ? faCheck : faBell"
+                  [class.text-white]="getStatusClass(order.status, 'listo') === 'completed' || getStatusClass(order.status, 'listo') === 'current'">
+                </fa-icon>
+              </div>
+              <span class="text-xs md:text-sm text-brand-text-secondary"
+                    [class.text-green-400]="getStatusClass(order.status, 'listo') === 'completed'"
+                    [class.text-yellow-400]="getStatusClass(order.status, 'listo') === 'current'">
+                Listo
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    } @empty {
+       <div class="text-center py-10 bg-brand-sidebar rounded-lg">
+          <p class="text-brand-text-secondary">No hay pedidos activos en este momento.</p>
+          <button (click)="stateService.clearTableSelection()" class="mt-4 text-brand-accent hover:underline">
+             Volver a seleccionar mesa
+          </button>
+       </div>
+    }
+  </div>

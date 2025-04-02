@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+@theme {
+
+    /* Define los colores extraídos de la imagen */
+    --color-brand-dark: #1a1a1a;
+    /* Fondo principal muy oscuro */
+    --color-brand-sidebar: #292929;
+    /* Fondo del sidebar izquierdo */
+    --color-brand-card: #3a3a3a;
+    /* Fondo de las tarjetas de producto y sidebar activo */
+    --color-brand-cart: #4a4a4a;
+    /* Fondo del carrito (sidebar derecho) */
+    --color-brand-accent: #FFE111;
+    /* Amarillo para botones y logo (similar a yellow-500) */
+    --color-brand-text: #ffffff;
+    /* Texto principal blanco */
+    --color-brand-text-secondary: #e0e0e0;
+    /* Texto secundario más tenue */
+}
+
+body {
+    @apply bg-brand-dark text-brand-text;
+    /* Fondo oscuro y texto blanco por defecto */
+}
+
+.nav-link {
+    @apply py-3 px-4 rounded-lg transition-colors duration-200 w-full block;
+}
+
+.nav-icon {
+    @apply text-lg;
+}
+
+.nav-text {
+    @apply font-medium;
+}
+
+/* Estilos modernos para scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--color-brand-dark);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-brand-card);
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-brand-accent);
+}
+
+/* Estilos para Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-brand-card) var(--color-brand-dark);
+}

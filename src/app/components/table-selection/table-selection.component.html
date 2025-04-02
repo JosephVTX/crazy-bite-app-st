@@ -1,0 +1,13 @@
+<div class="h-full">
+  
+    <div class="grid grid-cols-3 gap-4 md:gap-6 lg:gap-8 h-full">
+      @for (table of tables; track table) {
+        <button
+          (click)="selectThisTable(table)"
+          class="bg-brand-card  hover:bg-brand-accent hover:text-brand-dark transition-colors duration-200 text-brand-text-secondary font-semibold rounded-lg shadow-md flex flex-col items-center justify-center">
+           <span class="text-sm md:text-base">MESA</span>
+           <span class="text-xl md:text-3xl font-bold">{{ table }}</span>
+        </button>
+      }
+    </div>
+  </div>
