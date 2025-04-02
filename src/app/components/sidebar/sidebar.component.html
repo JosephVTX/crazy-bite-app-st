@@ -19,7 +19,7 @@
       <ul class="flex flex-col px-4 py-4 space-y-4">
          <li class="w-full">
             <a href="#" (click)="$event.preventDefault(); stateService.clearTableSelection(); closeMenu()" 
-               class="flex items-center space-x-3 py-3 px-4 rounded-lg transition-colors duration-200 w-full"
+               class="flex items-center gap-3 py-3 px-4 rounded-lg transition-colors duration-200 w-full"
                [ngClass]="currentView() === 'tables' ? 'bg-brand-card text-brand-accent' : 'text-brand-text-secondary hover:bg-brand-card/50'">
                <span class="text-xl"><fa-icon [icon]="faHouse"></fa-icon></span>
                <span class="font-medium">MESAS</span>
@@ -28,7 +28,7 @@
          <li class="w-full">
             <a href="#"
                (click)="$event.preventDefault(); (stateService.currentView() === 'tables' ? null : stateService.currentView.set('menu')); closeMenu()"
-               class="flex items-center space-x-3 py-3 px-4 rounded-lg transition-colors duration-200 w-full" 
+               class="flex items-center gap-3 py-3 px-4 rounded-lg transition-colors duration-200 w-full" 
                [ngClass]="{
                'bg-brand-card text-brand-accent': currentView() === 'menu',
                'text-brand-text-secondary hover:bg-brand-card/50': currentView() !== 'menu',
@@ -40,7 +40,7 @@
          </li>
          <li class="w-full">
             <a href="#" (click)="$event.preventDefault(); stateService.viewOrders(); closeMenu()" 
-               class="flex items-center space-x-3 py-3 px-4 rounded-lg transition-colors duration-200 w-full"
+               class="flex items-center gap-3 py-3 px-4 rounded-lg transition-colors duration-200 w-full"
                [ngClass]="currentView() === 'orders' ? 'bg-brand-card text-brand-accent' : 'text-brand-text-secondary hover:bg-brand-card/50'">
                <span class="text-xl"><fa-icon [icon]="faCartShopping"></fa-icon></span>
                <span class="font-medium">PEDIDOS</span>
