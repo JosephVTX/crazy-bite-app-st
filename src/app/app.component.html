@@ -1,53 +1,58 @@
-<div class="flex flex-col md:flex-row h-screen bg-brand-dark text-brand-text overflow-hidden">
-  <!-- Sidebar: en móvil es un header fijo arriba, en desktop es una columna lateral -->
-  <app-sidebar
-    class="w-full md:w-20 lg:w-64 flex-shrink-0 h-auto md:h-full fixed md:static top-0 left-0 right-0 z-10">
-  </app-sidebar>
-  
-  <!-- Contenido principal: en móvil comienza después del header -->
-  <main class="flex-1 overflow-y-auto p-4 md:p-8 mt-26 md:mt-0">
-    @switch (currentView()) {
-      @case ('tables') {
-        <app-table-selection></app-table-selection>
+<!-- Login view -->
+@if (currentView() === 'login') {
+  <app-login></app-login>
+} @else {
+  <div class="flex flex-col md:flex-row h-screen bg-brand-dark text-brand-text overflow-hidden">
+    <!-- Sidebar: en móvil es un header fijo arriba, en desktop es una columna lateral -->
+    <app-sidebar
+      class="w-full md:w-20 lg:w-64 flex-shrink-0 h-auto md:h-full fixed md:static top-0 left-0 right-0 z-10">
+    </app-sidebar>
+    
+    <!-- Contenido principal: en móvil comienza después del header -->
+    <main class="flex-1 overflow-y-auto p-4 md:p-8 mt-26 md:mt-0">
+      @switch (currentView()) {
+        @case ('tables') {
+          <app-table-selection></app-table-selection>
+        }
+        @case ('menu') {
+          <app-menu></app-menu>
+        }
+        @case ('orders') {
+          <app-order-status></app-order-status>
+        }
+        @default {
+          <p>Vista no reconocida.</p>
+        }
       }
-      @case ('menu') {
-        <app-menu></app-menu>
-      }
-      @case ('orders') {
-        <app-order-status></app-order-status>
-      }
-      @default {
-        <p>Vista no reconocida.</p>
-      }
-    }
-  </main>
+    </main>
 
-  @if (currentView() === 'menu') {
-    <!-- Versión desktop del carrito -->
-    <app-cart
-      class="w-full md:w-72 lg:w-96 flex-shrink-0 bg-brand-cart rounded-t-lg md:rounded-l-lg md:rounded-t-none hidden md:flex flex-col">
-    </app-cart>
-    
-    <!-- Icono flotante del carrito para móvil -->
-    <button (click)="toggleCartMobile()" 
-            class="md:hidden fixed bottom-5 right-5 bg-brand-accent rounded-full p-4 shadow-lg z-20 flex items-center justify-center">
-      <fa-icon [icon]="faCartShopping" class="text-brand-dark text-xl"></fa-icon>
-      <!-- Contador de items -->
-      @if(cartItemCount() > 0) {
-        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center">
-          {{cartItemCount()}}
-        </span>
-      }
-    </button>
-    
-    <!-- Panel móvil del carrito -->
-    <div [ngClass]="{'translate-y-0': showCartMobile, 'translate-y-full': !showCartMobile}"
-         class="md:hidden fixed bottom-0 left-0 right-0 bg-brand-cart z-30 rounded-t-xl shadow-lg transform transition-transform duration-300 max-h-[80vh] overflow-auto">
-      <div class="flex justify-between items-center p-4 border-b border-brand-card">
-        <h2 class="font-bold text-brand-text">Tu Carrito</h2>
-        <button (click)="toggleCartMobile()" class="text-brand-text-secondary">✕</button>
+    @if (currentView() === 'menu') {
+      <!-- Versión desktop del carrito -->
+      <app-cart
+        class="w-full md:w-72 lg:w-96 flex-shrink-0 bg-brand-cart rounded-t-lg md:rounded-l-lg md:rounded-t-none hidden md:flex flex-col">
+      </app-cart>
+      
+      <!-- Icono flotante del carrito para móvil -->
+      <button (click)="toggleCartMobile()" 
+              class="md:hidden fixed bottom-5 right-5 bg-brand-accent rounded-full p-4 shadow-lg z-20 flex items-center justify-center">
+        <fa-icon [icon]="faCartShopping" class="text-brand-dark text-xl"></fa-icon>
+        <!-- Contador de items -->
+        @if(cartItemCount() > 0) {
+          <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center">
+            {{cartItemCount()}}
+          </span>
+        }
+      </button>
+      
+      <!-- Panel móvil del carrito -->
+      <div [ngClass]="{'translate-y-0': showCartMobile, 'translate-y-full': !showCartMobile}"
+           class="md:hidden fixed bottom-0 left-0 right-0 bg-brand-cart z-30 rounded-t-xl shadow-lg transform transition-transform duration-300 max-h-[80vh] overflow-auto">
+        <div class="flex justify-between items-center p-4 border-b border-brand-card">
+          <h2 class="font-bold text-brand-text">Tu Carrito</h2>
+          <button (click)="toggleCartMobile()" class="text-brand-text-secondary">✕</button>
+        </div>
+        <app-cart></app-cart>
       </div>
-      <app-cart></app-cart>
-    </div>
-  }
-</div>
+    }
+  </div>
+}

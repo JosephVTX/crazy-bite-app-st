@@ -1,0 +1,84 @@
+<div class="min-h-screen w-full flex items-center justify-center bg-brand-dark p-4">
+  <div class="max-w-md w-full bg-brand-sidebar rounded-xl shadow-lg p-8">
+    
+    <!-- Logo -->
+    <div class="flex justify-center mb-8">
+      <div class="w-32 h-32 aspect-square">
+        <img src="/images/logo.png" alt="Crazy Bite Logo" class="size-full object-contain" />
+      </div>
+    </div>
+    
+    <!-- Título -->
+    <h1 class="text-3xl font-bold text-center text-brand-accent mb-8">Crazy Bite</h1>
+    
+    <!-- Formulario de login -->
+    <form (ngSubmit)="login()" class="space-y-6">
+      
+      <!-- Mensaje de error -->
+      @if (errorMessage) {
+      <div class="bg-red-500/20 border border-red-500 text-red-100 px-4 py-3 rounded-lg mb-4">
+        {{ errorMessage }}
+      </div>
+      }
+      
+      <!-- Campo de usuario -->
+      <div class="space-y-2">
+        <label for="username" class="block text-brand-text-secondary text-sm">Usuario</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-brand-text-secondary">
+            <fa-icon [icon]="faUser"></fa-icon>
+          </div>
+          <input 
+            type="text" 
+            id="username" 
+            name="username"
+            [(ngModel)]="username"
+            class="w-full py-3 px-10 bg-brand-card border-2 border-transparent focus:border-brand-accent rounded-lg outline-none transition-colors"
+            placeholder="Ingresa tu usuario">
+        </div>
+      </div>
+      
+      <!-- Campo de contraseña -->
+      <div class="space-y-2">
+        <label for="password" class="block text-brand-text-secondary text-sm">Contraseña</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-brand-text-secondary">
+            <fa-icon [icon]="faLock"></fa-icon>
+          </div>
+          <input 
+            type="password" 
+            id="password" 
+            name="password"
+            [(ngModel)]="password"
+            class="w-full py-3 px-10 bg-brand-card border-2 border-transparent focus:border-brand-accent rounded-lg outline-none transition-colors"
+            placeholder="Ingresa tu contraseña">
+        </div>
+      </div>
+      
+      <!-- Recordarme -->
+      <div class="flex items-center">
+        <input 
+          type="checkbox" 
+          id="remember" 
+          name="remember"
+          [(ngModel)]="rememberMe"
+          class="w-4 h-4 bg-brand-card border-brand-accent rounded focus:ring-brand-accent">
+        <label for="remember" class="ml-2 text-sm text-brand-text-secondary">Recordarme</label>
+      </div>
+      
+      <!-- Botón de inicio de sesión -->
+      <button 
+        type="submit" 
+        class="w-full bg-brand-accent hover:brightness-110 text-brand-dark font-bold py-3 px-4 rounded-lg transition-all flex items-center justify-center gap-2">
+        <span>Iniciar Sesión</span>
+        <fa-icon [icon]="faSignInAlt"></fa-icon>
+      </button>
+      
+      <!-- Mensaje informativo -->
+      <p class="text-xs text-center text-brand-text-secondary mt-4">
+        Usuario: admin | Contraseña: 123456
+      </p>
+    </form>
+    
+  </div>
+</div> 

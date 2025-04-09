@@ -4,7 +4,7 @@ import { Order, OrderStatus } from '../models/order.model';
 import { CartItem } from './cart.service';
 
 // Tipos para las vistas posibles
-export type AppView = 'tables' | 'menu' | 'orders';
+export type AppView = 'tables' | 'menu' | 'orders' | 'login';
 
 @Injectable({
   providedIn: 'root'
