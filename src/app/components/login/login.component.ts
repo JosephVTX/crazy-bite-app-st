@@ -21,8 +21,8 @@ export class LoginComponent {
   faSignInAlt = faSignInAlt;
   
   // Credenciales por defecto
-  username: string = '';
-  password: string = '';
+  username: string = 'admin';
+  password: string = '123456';
   errorMessage: string = '';
   rememberMe: boolean = false;
   

@@ -46,6 +46,13 @@
                <span class="font-medium">PEDIDOS</span>
             </a>
          </li>
+         <li class="w-full">
+            <a href="#" (click)="$event.preventDefault(); logout(); closeMenu()" 
+               class="flex items-center gap-3 py-3 px-4 rounded-lg transition-colors duration-200 w-full text-brand-text-secondary hover:bg-brand-card/50">
+               <span class="text-xl"><fa-icon [icon]="faSignOutAlt"></fa-icon></span>
+               <span class="font-medium">CERRAR SESIÓN</span>
+            </a>
+         </li>
       </ul>
    </div>
 </div>
@@ -92,4 +99,13 @@
          </li>
       </ul>
    </nav>
+   
+   <!-- Botón de Cerrar Sesión (en la parte inferior) -->
+   <div class="mt-auto w-full px-4 pb-6">
+      <a href="#" (click)="$event.preventDefault(); logout()" 
+         class="flex md:flex-col items-center md:justify-center space-x-3 md:space-x-0 md:space-y-2 py-3 px-2 rounded-lg transition-colors duration-200 w-full text-brand-text-secondary hover:bg-brand-card/50">
+         <span class="text-xl"><fa-icon [icon]="faSignOutAlt"></fa-icon></span>
+         <span class="font-medium lg:block md:hidden">CERRAR SESIÓN</span>
+      </a>
+   </div>
 </div>
