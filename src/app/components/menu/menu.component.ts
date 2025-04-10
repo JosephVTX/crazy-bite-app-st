@@ -24,14 +24,16 @@ export class MenuComponent {
   // --- Datos ---
   products: Product[] = [
     // ... (tus productos con categorías asignadas como en el paso 1) ...
-    { id: 1, name: 'Hamburguesa clásica', price: 10.00, imageUrl: 'https://placehold.co/600x400/E9D5FF/4D2C8B?text=Clasica', category: 'Hamburguesas' },
-    { id: 2, name: 'Hamburguesa royal', price: 20.00, imageUrl: 'https://placehold.co/600x400/FBCFE8/831843?text=Royal', category: 'Hamburguesas' },
-    { id: 3, name: 'Hamburguesa casera', price: 15.00, imageUrl: 'https://placehold.co/600x400/FEF08A/713F12?text=Casera', category: 'Hamburguesas' },
-    { id: 4, name: 'Pizza Pepperoni', price: 25.00, imageUrl: 'https://placehold.co/600x400/FECACA/991B1B?text=Pizza', category: 'Pizzas' },
-    { id: 5, name: 'Ensalada César', price: 18.00, imageUrl: 'https://placehold.co/600x400/A7F3D0/065F46?text=Ensalada', category: 'Ensaladas' },
-    { id: 6, name: 'Agua Mineral', price: 3.00, imageUrl: 'https://placehold.co/600x400/BFDBFE/1E3A8A?text=Agua', category: 'Bebidas' },
-    { id: 7, name: 'Gaseosa', price: 5.00, imageUrl: 'https://placehold.co/600x400/DDD6FE/4C1D95?text=Gaseosa', category: 'Bebidas' },
-    { id: 8, name: 'Torta de Chocolate', price: 12.00, imageUrl: 'https://placehold.co/600x400/F5D0A9/7C2D12?text=Torta', category: 'Postres' },
+    { id: 1, name: 'Hamburguesa clásica', price: 10.00, imageUrl: 'https://www.serargentino.com/public/images/2021/01/16109941330-17-burger-773x458.jpg', category: 'Hamburguesas' },
+    { id: 2, name: 'Hamburguesa royal', price: 20.00, imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPPSYgqsbNkYUr7X9CAhkWcb_7WMmfu4nj_Q&s', category: 'Hamburguesas' },
+    { id: 3, name: 'Hamburguesa casera', price: 15.00, imageUrl: 'https://media.istockphoto.com/id/635875304/es/foto/hamburguesa-aislada-sobre-fondo-blanco.jpg?s=612x612&w=0&k=20&c=5N_Tn6mNQ1NLJNx_o68VdWtq3rkxKneF7FBz9mfUNG8=', category: 'Hamburguesas' },
+    { id: 4, name: 'Pizza Pepperoni', price: 25.00, imageUrl: 'https://assets-us-01.kc-usercontent.com/4353bced-f940-00d0-8c6e-13a0a4a7f5c2/2ac60829-5178-4a6e-80cf-6ca43d862cee/Quick-and-Easy-Pepperoni-Pizza-700x700.jpeg?w=1280&auto=format', category: 'Pizzas' },
+    { id: 5, name: 'Ensalada César', price: 18.00, imageUrl: 'https://www.goodnes.com/sites/g/files/jgfbjl321/files/srh_recipes/755f697272cbcdc6e5df2adb44b1b705.jpg', category: 'Ensaladas' },
+    { id: 6, name: 'Agua Mineral', price: 3.00, imageUrl: 'https://socialdrinks.pe/wp-content/uploads/2022/04/1313_BE00000051.jpeg', category: 'Bebidas' },
+    { id: 7, name: 'Gaseosa', price: 5.00, imageUrl: 'https://metroio.vtexassets.com/arquivos/ids/237646/517411-01-4644.jpg?v=638173813436870000', category: 'Bebidas' },
+    { id: 8, name: 'Torta de Chocolate', price: 12.00, imageUrl: 'https://patty.pe/wp-content/uploads/2021/06/MINI-CHOCOLATE.png', category: 'Postres' },
+    { id: 9, name: 'Pizza Americana', price: 23.00, imageUrl: 'https://mandolina.co/wp-content/uploads/2023/08/pizza-americana-1200x900.jpg', category: 'Pizzas' },
+    { id: 10, name: 'Pizza Hawaiana', price: 22.00, imageUrl: 'https://www.cocinadelirante.com/sites/default/files/images/2019/11/como-hacer-pizza-hawaiana.jpg', category: 'Pizzas' },
   ];
   categories = ['Todas', ...new Set(this.products.map(p => p.category))];
 
